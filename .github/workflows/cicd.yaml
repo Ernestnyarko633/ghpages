@@ -1,0 +1,61 @@
+name: Deploy Frontend and SonarQube Analysis
+
+on:
+  push:
+    branches:
+      - main
+      
+      
+
+jobs:
+  sonarqube-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # - name: SonarQube Scan
+      #   env:
+      #     SONAR_TOKEN: ${{ secrets.BUYERDASHBOARDSONARTOKEN }}
+      #   run: |
+      #     curl -L https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.6.2.2472-linux.zip -o sonar-scanner-cli.zip
+      #     unzip sonar-scanner-cli.zip
+      #     export PATH=$PWD/sonar-scanner-4.6.2.2472-linux/bin:$PATH
+      #     sonar-scanner \
+      #       -Dsonar.projectKey=cf-buyer-dashboard-v2 \
+      #       -Dsonar.sources=. \
+      #       -Dsonar.host.url=http://sonar.completefarmer.com:9000/ \
+      #       -Dsonar.login=$SONAR_TOKEN
+
+  Deploy_Frontend_and_SonarQube_Analysis:
+    needs: sonarqube-scan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # - name: Set BUYER_FRONTEND_ENV
+      #   run: echo "BUYER_FRONTEND_ENV=dev" >> $GITHUB_ENV
+
+      # - name: Print BUYER_FRONTEND_ENV
+      #   run: echo "BUYER_FRONTEND_ENV=$BUYER_FRONTEND_ENV"
+
+      - name: Print current directory
+        run: |
+          echo "Current directory: $PWD"
+
+      - name: Install Amplify CLI
+        run: |
+          npm install -g @aws-amplify/cli
+
+      - name: Print Amplify CLI Configuration
+        run: amplify configure get
+
+      # - name: Pull Amplify project for amplify environment
+      #   run: amplify pull --appId arn:aws:amplify:us-east-2:749165515165:apps/dijouc126m6om --env amplify
+
+      - name: Deploy to Amplify
+        run: |
+          echo "Deploying with environment: $BUYER_FRONTEND_ENV"
+          amplify publish \
+            --env amplify

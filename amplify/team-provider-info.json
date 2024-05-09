@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-ghpages-dev-3a8c8-authRole",
+      "UnauthRoleArn": "arn:aws:iam::263926175602:role/amplify-ghpages-dev-3a8c8-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::263926175602:role/amplify-ghpages-dev-3a8c8-authRole",
+      "Region": "us-west-2",
+      "DeploymentBucketName": "amplify-ghpages-dev-3a8c8-deployment",
+      "UnauthRoleName": "amplify-ghpages-dev-3a8c8-unauthRole",
+      "StackName": "amplify-ghpages-dev-3a8c8",
+      "StackId": "arn:aws:cloudformation:us-west-2:263926175602:stack/amplify-ghpages-dev-3a8c8/fbe99d10-0e18-11ef-9275-0a44e9ddfad9",
+      "AmplifyAppId": "d2q56c9th1f79r"
+    }
+  }
+}
