@@ -16,8 +16,8 @@ jobs:
       - name: Install Amplify CLI
         run: npm install -g @aws-amplify/cli
 
-      - name: Configure Amplify CLI
-        run: amplify configure --app ARN:aws:amplify:us-west-2:263926175602:apps/d3r706lxlg91q
+      - name: Initialize Amplify environment
+        run: amplify init --appId d3r706lxlg91q --envName main
 
       - name: Pull Amplify project
         run: amplify pull --appId d3r706lxlg91q --envName main
